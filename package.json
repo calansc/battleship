@@ -1,0 +1,29 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Battleship Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch *.js",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calansc/battleship.git#main"
+  },
+  "author": "Chad Schroeder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calansc/battleship/issues"
+  },
+  "homepage": "https://github.com/calansc/battleship/tree/main#readme",
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "jest": "^29.7.0",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}

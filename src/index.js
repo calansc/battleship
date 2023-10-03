@@ -37,7 +37,28 @@ class Gameboard {
     this.board = boardArray;
     return this.board;
   }
-  placeShip(coordinateXY, length) {}
+  placeShip(coordinateXY, length, alignment, name) {
+    // alignment: horizontal = 0, vertical = 1
+    name = new Ship(length);
+    if (alignment === 1) {
+      name.coordinates.push(coordinateXY);
+      for (let i = 1; i < length; i++) {
+        let coordinateX = coordinateXY[0];
+        let coordinateY = coordinateXY[1];
+        // let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+        let arrayY = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+        // let indexX = arrayX.indexOf(coordinateX);
+        let indexY = arrayY.indexOf(coordinateY);
+        // let newCoordinateX = arrayX[indexX + i];
+        let newCoordinateY = arrayY[indexY + i];
+        name.coordinates.push(coordinateX + newCoordinateY);
+      }
+    }
+    return name;
+  }
+  receiveAttack() {}
+  missedAttackArray() {}
+  allSunk() {}
 }
 let gameboard = new Gameboard();
 console.log(gameboard);

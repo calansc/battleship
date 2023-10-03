@@ -35,5 +35,10 @@ test("Game Board", () => {
   expect(gameboard.board[99]).toEqual("J10");
 });
 test("Place Ship", () => {
-  expect(gameboard.placeShip("A1", 2)).toEqual(["A1", "A2"]);
+  expect(gameboard.placeShip("A1", 2, 1, "cruise")).toEqual({
+    coordinates: ["A1", "A2"],
+    hits: 0,
+    isSunk: false,
+    shipLength: 2,
+  });
 });

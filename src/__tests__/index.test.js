@@ -28,11 +28,12 @@ test("Game Board", () => {
   expect(gameboard.board[10]).toEqual("A2");
   expect(gameboard.board[99]).toEqual("J10");
 });
-const patrolBoat = new index.Ship(2);
-const battleship = new index.Ship(4);
-// console.log(patrolBoat);
-// console.log(gameboard.placeShip("A1", patrolBoat, 1));
-// console.log(patrolBoat);
+
+let carrier = new index.Ship(5);
+let battleship = new index.Ship(4);
+let destroyer = new index.Ship(3);
+let submarine = new index.Ship(3);
+let patrolBoat = new index.Ship(2);
 
 test("Place Ship", () => {
   expect(gameboard.placeShip("A1", patrolBoat, 1)).toEqual({
@@ -50,6 +51,12 @@ test("Place Ship", () => {
 });
 
 test("Receive Attack", () => {
-  expect(gameboard.receiveAttack("A1")).toEqual("hit");
-  // expect(gameboard.receiveAttack("B2")).toEqual("miss");
+  expect(gameboard.receiveAttack("A1")).toEqual(false);
+  expect(gameboard.receiveAttack("B2")).toEqual(1);
+  expect(gameboard.receiveAttack("D4")).toEqual(false);
+  expect(gameboard.receiveAttack("A2")).toEqual(true);
+});
+
+test("All Sunk Check", () => {
+  expect(gameboard.allSunk()).toEqual(false);
 });

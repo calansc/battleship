@@ -4,9 +4,8 @@ class Gameboard {
   constructor() {
     this.board = this.buildBoard();
     // this.allShipCoordinates = [];
-    this.ships = [];
-    this.cruiser;
-    this.destroyer;
+    this.missedAttackArray = [];
+    this.shipArray = [];
   }
   buildBoard() {
     let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -49,11 +48,26 @@ class Gameboard {
     // for (let i = 0; i < newShip.coordinates.length; i++) {
     //   this.allShipCoordinates.push(newShip.coordinates[i]);
     // }
+    this.shipArray.push(name);
     return name;
   }
-  receiveAttack(attackCoordinates) {}
-  missedAttackArray() {}
-  allSunk() {}
+  receiveAttack(attackCoordinates) {
+    for (let i = 0; i < this.shipArray.length; i++) {
+      if (this.shipArray[i].coordinates.indexOf(attackCoordinates) != -1) {
+        return this.shipArray[i].hitCount();
+      }
+    }
+    return this.missedAttackArray.push(attackCoordinates);
+  }
+  allSunk() {
+    let allSunkShips = true;
+    this.shipArray.forEach((ship) => {
+      if (ship.isSunk === false) {
+        allSunkShips = false;
+      }
+    });
+    return allSunkShips;
+  }
 }
 
 export { Gameboard };

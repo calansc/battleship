@@ -1,4 +1,4 @@
-const index = require("./src/index");
+const index = require("../index");
 // REMEMBER you only have to test your object’s public interface.
 // Only methods or properties that are used outside of your ‘ship’
 // object need unit tests.
@@ -15,16 +15,10 @@ test("Ship Class", () => {
   });
 });
 test("Ship hit counter(1)", () => {
-  expect(ship2.hitCount()).toEqual(1);
-});
-test("Ship is sunk check(false)", () => {
-  expect(ship2.isSunkCheck()).toEqual(false);
+  expect(ship2.hitCount()).toEqual(false);
 });
 test("Ship hit counter(2)", () => {
-  expect(ship2.hitCount()).toEqual(2);
-});
-test("Ship is sunk check(true)", () => {
-  expect(ship2.isSunkCheck()).toEqual(true);
+  expect(ship2.hitCount()).toEqual(true);
 });
 
 const gameboard = new index.Gameboard();
@@ -34,11 +28,28 @@ test("Game Board", () => {
   expect(gameboard.board[10]).toEqual("A2");
   expect(gameboard.board[99]).toEqual("J10");
 });
+const patrolBoat = new index.Ship(2);
+const battleship = new index.Ship(4);
+// console.log(patrolBoat);
+// console.log(gameboard.placeShip("A1", patrolBoat, 1));
+// console.log(patrolBoat);
+
 test("Place Ship", () => {
-  expect(gameboard.placeShip("A1", 2, 1, "cruise")).toEqual({
+  expect(gameboard.placeShip("A1", patrolBoat, 1)).toEqual({
     coordinates: ["A1", "A2"],
     hits: 0,
     isSunk: false,
     shipLength: 2,
   });
+  expect(gameboard.placeShip("B4", battleship, 0)).toEqual({
+    coordinates: ["B4", "C4", "D4", "E4"],
+    hits: 0,
+    isSunk: false,
+    shipLength: 4,
+  });
+});
+
+test("Receive Attack", () => {
+  expect(gameboard.receiveAttack("A1")).toEqual("hit");
+  // expect(gameboard.receiveAttack("B2")).toEqual("miss");
 });

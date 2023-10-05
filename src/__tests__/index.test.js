@@ -53,6 +53,7 @@ test("Place Ship", () => {
 test("Receive Attack", () => {
   expect(gameboard.receiveAttack("A1")).toEqual(false);
   expect(gameboard.receiveAttack("B2")).toEqual(1);
+  expect(gameboard.receiveAttack("B2")).toEqual("guess again");
   expect(gameboard.receiveAttack("D4")).toEqual(false);
   expect(gameboard.receiveAttack("A2")).toEqual(true);
 });

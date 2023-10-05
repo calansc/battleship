@@ -52,12 +52,16 @@ class Gameboard {
     return name;
   }
   receiveAttack(attackCoordinates) {
-    for (let i = 0; i < this.shipArray.length; i++) {
-      if (this.shipArray[i].coordinates.indexOf(attackCoordinates) != -1) {
-        return this.shipArray[i].hitCount();
+    if (this.missedAttackArray.indexOf(attackCoordinates) != -1) {
+      return "guess again";
+    } else {
+      for (let i = 0; i < this.shipArray.length; i++) {
+        if (this.shipArray[i].coordinates.indexOf(attackCoordinates) != -1) {
+          return this.shipArray[i].hitCount();
+        }
       }
+      return this.missedAttackArray.push(attackCoordinates);
     }
-    return this.missedAttackArray.push(attackCoordinates);
   }
   allSunk() {
     let allSunkShips = true;

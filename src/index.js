@@ -1,5 +1,6 @@
 import { Gameboard } from "./gameboard";
 import { Ship } from "./ship";
+import { Player } from "./player";
 
 let gameboard = new Gameboard();
 console.log(gameboard);
@@ -14,4 +15,5 @@ let patrolBoat = new Ship(2);
 module.exports = {
   Ship: Ship,
   Gameboard: Gameboard,
+  Player: Player,
 };

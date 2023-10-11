@@ -93,13 +93,15 @@ class Gameboard {
   }
   receiveAttack(attackCoordinates) {
     if (this.missedAttackArray.indexOf(attackCoordinates) != -1) {
-      return "guess again";
+      return console.log("already guessed");
     } else {
       for (let i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].coordinates.indexOf(attackCoordinates) != -1) {
-          return this.shipArray[i].hitCount();
+          console.log("logging hit:" + attackCoordinates);
+          return console.log(this.shipArray[i].hitCount());
         }
       }
+      console.log("logging miss:" + attackCoordinates);
       return this.missedAttackArray.push(attackCoordinates);
     }
   }

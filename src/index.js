@@ -31,6 +31,19 @@ let aiBoardHTML = document.querySelector(".aiBoard");
 createBoard("playerBoard");
 createBoard("aiBoard");
 
+//Player random ship placement
+randomShipPlacement(carrier, playerBoard);
+randomShipPlacement(battleship, playerBoard);
+randomShipPlacement(destroyer, playerBoard);
+randomShipPlacement(submarine, playerBoard);
+randomShipPlacement(patrolBoat, playerBoard);
+//AI random ship placement
+randomShipPlacement(carrierAI, aiBoard);
+randomShipPlacement(battleshipAI, aiBoard);
+randomShipPlacement(destroyerAI, aiBoard);
+randomShipPlacement(submarineAI, aiBoard);
+randomShipPlacement(patrolBoatAI, aiBoard);
+
 function createBoard(boardName) {
   let boardNameHTML = document.querySelector(`.${boardName}`);
   let cellBoardClass = boardName + "Cell";
@@ -85,18 +98,11 @@ function randomShipPlacement(shipName, boardName) {
     }
   } else randomShipPlacement(shipName, boardName);
 }
-//Player random ship placement
-randomShipPlacement(carrier, playerBoard);
-randomShipPlacement(battleship, playerBoard);
-randomShipPlacement(destroyer, playerBoard);
-randomShipPlacement(submarine, playerBoard);
-randomShipPlacement(patrolBoat, playerBoard);
-//AI random ship placement
-randomShipPlacement(carrier, aiBoard);
-randomShipPlacement(battleship, aiBoard);
-randomShipPlacement(destroyer, aiBoard);
-randomShipPlacement(submarine, aiBoard);
-randomShipPlacement(patrolBoat, aiBoard);
+
+function attackEvent(element) {
+  console.log("player attack:" + element.classList[1]); // "F5"
+  aiBoard.receiveAttack(element.classList[1]);
+}
 
 // module.exports = {
 //   Ship: Ship,

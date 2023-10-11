@@ -2,6 +2,7 @@ import { Gameboard } from "./gameboard";
 import { Ship } from "./ship";
 import { Player } from "./player";
 import { AI } from "./ai";
+import { css } from "./style.css";
 
 //Player Ships
 let carrier = new Ship(5);
@@ -24,8 +25,29 @@ let ai = new AI("AI", player, playerBoard);
 
 let playerBoardHTML = document.querySelector(".playerBoard");
 let aiBoardHTML = document.querySelector(".aiBoard");
-console.log(playerBoardHTML);
-console.log(aiBoardHTML);
+// console.log(playerBoard.getBoardArray());
+
+createBoard("playerBoard");
+createBoard("aiBoard");
+
+function createBoard(boardName) {
+  let boardNameHTML = document.querySelector(`.${boardName}`);
+  let cellBoardClass = boardName + "Cell";
+  for (let i = 0; i < playerBoard.getBoardArray().length; i++) {
+    let cell = document.createElement("div");
+    cell.classList.add(cellBoardClass);
+    let cellClass = playerBoard.getBoardArray()[i];
+    cell.classList.add(cellClass);
+    if (boardName == "aiBoard") {
+      cell.addEventListener("click", (e) => {
+        attackEvent(e.target);
+      });
+    } else if (boardName == "playerBoard") {
+      //add ship placement event listener's here
+    }
+    boardNameHTML.appendChild(cell);
+  }
+}
 
 // module.exports = {
 //   Ship: Ship,

@@ -8,20 +8,7 @@ class AI extends Player {
     this.enemyBoard = enemyBoard;
     this.aiAttackArray = [];
   }
-  //   checkTurn() {
-  //     return this.turn;
-  //   }
-  //   endTurn(enemyPlayer) {
-  //     if (this.turn == true) {
-  //       this.turn = false;
-  //     }
-  //   }
-  //   attack(coordinatesXY, enemyPlayer, enemyBoard) {
-  //     if (this.checkturn()) {
-  //       enemyBoard.receiveAttack(coordinatesXY);
-  //       this.endTurn(enemyPlayer);
-  //     }
-  //   }
+
   randomAttack() {
     if (this.checkTurn()) {
       let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];

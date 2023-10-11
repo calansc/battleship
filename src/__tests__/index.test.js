@@ -1,4 +1,6 @@
+const { experiments } = require("webpack");
 const index = require("../index");
+const { Gameboard } = require("../gameboard");
 // REMEMBER you only have to test your object’s public interface.
 // Only methods or properties that are used outside of your ‘ship’
 // object need unit tests.
@@ -66,3 +68,10 @@ test("All Sunk Check", () => {
 // test("Player Makes Attack", () => {
 //   expect(player.attack("A1")).toEqual(false);
 // });
+let playerBoard = new index.Gameboard();
+let aiBoard = new index.Gameboard();
+let player = new index.Player("Chad");
+const ai = new index.AI("AI", player, playerBoard);
+test("AI attack", () => {
+  expect(ai.randomAttack()).toMatch(/[A-J]{1}[0-9]{1}/);
+});

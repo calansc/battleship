@@ -22,6 +22,25 @@ class Gameboard {
   getBoardArray() {
     return this.board;
   }
+  checkShipPlacement(coordinateX, coordinateY, length, alignment) {
+    for (let i = 0; i < this.shipArray.shipLength; i++) {
+      if (this.shipArray[i].indexOf(coordinatesXY) != -1) {
+        return false;
+      }
+    }
+    if (alignment === 0) {
+      let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+      if (arrayX.indexOf(coordinateX) > 10 - length) {
+        return false;
+      }
+    } else if (alignment === 1) {
+      let arrayY = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+      if (arrayY.indexOf(coordinateY) > 10 - length) {
+        return false;
+      }
+    }
+    return true;
+  }
   placeShip(coordinateXY, name, alignment) {
     // alignment: horizontal = 0, vertical = 1
     if (alignment === 1) {
@@ -37,8 +56,8 @@ class Gameboard {
     } else if (alignment === 0) {
       name.coordinates.push(coordinateXY);
       for (let i = 1; i < name.shipLength; i++) {
-        let coordinateX = coordinateXY[0];
-        let coordinateY = coordinateXY[1];
+        let coordinateX = coordinateXY.substring(0, 1);
+        let coordinateY = coordinateXY.substring(1, 3);
         let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
         let indexX = arrayX.indexOf(coordinateX);
         let newCoordinateX = arrayX[indexX + i];

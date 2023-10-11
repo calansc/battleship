@@ -22,6 +22,7 @@ let aiBoard = new Gameboard();
 //Players
 let player = new Player("Chad");
 let ai = new AI("AI", player, playerBoard);
+//Test ship placements - Player
 
 let playerBoardHTML = document.querySelector(".playerBoard");
 let aiBoardHTML = document.querySelector(".aiBoard");
@@ -48,7 +49,28 @@ function createBoard(boardName) {
     boardNameHTML.appendChild(cell);
   }
 }
-
+function randomShipPlacement(shipName, boardName) {
+  let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+  let arrayY = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  let placementCoordinates =
+    arrayX[Math.floor(Math.random() * 10)] +
+    arrayY[Math.floor(Math.random() * 10)];
+  // console.log("Checking:" + placementCoordinates);
+  let alignment = Math.floor(Math.random() * 2);
+  if (
+    boardName.checkShipPlacement(
+      placementCoordinates.substring(0, 1),
+      placementCoordinates.substring(1, 3),
+      shipName.shipLength,
+      alignment
+    )
+  ) {
+    boardName.placeShip(placementCoordinates, shipName, alignment);
+  } else randomShipPlacement(shipName, boardName);
+}
+randomShipPlacement(carrier, playerBoard);
+console.log(carrier.coordinates);
+console.log(playerBoard);
 // module.exports = {
 //   Ship: Ship,
 //   Gameboard: Gameboard,

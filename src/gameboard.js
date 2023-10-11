@@ -23,9 +23,30 @@ class Gameboard {
     return this.board;
   }
   checkShipPlacement(coordinateX, coordinateY, length, alignment) {
-    for (let i = 0; i < this.shipArray.shipLength; i++) {
-      if (this.shipArray[i].indexOf(coordinatesXY) != -1) {
-        return false;
+    let coordinatesXY = coordinateX + coordinateY;
+    let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    let arrayY = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    let coordinateArray = [coordinatesXY];
+    // alignment: horizontal = 0, vertical = 1
+    if (alignment == 0) {
+      for (let i = 1; i < length; i++) {
+        let newX = arrayX[arrayX.indexOf(coordinateX) + i];
+        coordinateArray.push(newX + coordinateY);
+        // console.log(coordinateArray);
+      }
+    } else if (alignment == 1) {
+      for (let i = 1; i < length; i++) {
+        let newY = arrayY[arrayY.indexOf(coordinateY) + i];
+        coordinateArray.push(coordinateX + newY);
+        // console.log(coordinateArray);
+      }
+    }
+    for (let i = 0; i < this.shipArray.length; i++) {
+      // console.log(this.shipArray.length);
+      for (let j = 0; j < coordinateArray.length; j++) {
+        if (this.shipArray[i].coordinates.indexOf(coordinateArray[j]) != -1) {
+          return false;
+        }
       }
     }
     if (alignment === 0) {

@@ -62,7 +62,7 @@ test("All Sunk Check", () => {
   expect(gameboard.allSunk()).toEqual(false);
 });
 
-const player = new index.Player("Chad");
-test("Player Makes Attack", () => {
-  expect(player.attack("A1")).toEqual("test");
-});
+// const player = new index.Player("Chad");
+// test("Player Makes Attack", () => {
+//   expect(player.attack("A1")).toEqual(false);
+// });

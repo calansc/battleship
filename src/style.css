@@ -31,3 +31,6 @@
 .playerBoardCell.ship {
     background-color: blue;
 }
+.aiBoardCell.ship{
+    background-color: blue;
+}

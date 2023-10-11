@@ -66,11 +66,38 @@ function randomShipPlacement(shipName, boardName) {
     )
   ) {
     boardName.placeShip(placementCoordinates, shipName, alignment);
+    for (let i = 0; i < shipName.shipLength; i++) {
+      // let shipCell = document.querySelector(
+      //   `.${boardName}.${shipName.coordinates[i]}`
+      // );
+      let shipCell = shipName.coordinates[i];
+      if (boardName == playerBoard) {
+        let shipCellHTML = document.querySelector(
+          `.playerBoardCell.${shipCell}`
+        );
+        // console.log(shipCellHTML);
+        shipCellHTML.classList.add("ship");
+      } else if (boardName == aiBoard) {
+        let shipCellHTML = document.querySelector(`.aiBoardCell.${shipCell}`);
+        // console.log(shipCellHTML);
+        shipCellHTML.classList.add("ship");
+      }
+    }
   } else randomShipPlacement(shipName, boardName);
 }
+//Player random ship placement
 randomShipPlacement(carrier, playerBoard);
-console.log(carrier.coordinates);
-console.log(playerBoard);
+randomShipPlacement(battleship, playerBoard);
+randomShipPlacement(destroyer, playerBoard);
+randomShipPlacement(submarine, playerBoard);
+randomShipPlacement(patrolBoat, playerBoard);
+//AI random ship placement
+randomShipPlacement(carrier, aiBoard);
+randomShipPlacement(battleship, aiBoard);
+randomShipPlacement(destroyer, aiBoard);
+randomShipPlacement(submarine, aiBoard);
+randomShipPlacement(patrolBoat, aiBoard);
+
 // module.exports = {
 //   Ship: Ship,
 //   Gameboard: Gameboard,

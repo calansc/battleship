@@ -5,6 +5,7 @@ class Gameboard {
     this.board = this.buildBoard();
     // this.allShipCoordinates = [];
     this.missedAttackArray = [];
+    this.hitAttackArray = [];
     this.shipArray = [];
   }
   buildBoard() {
@@ -94,6 +95,8 @@ class Gameboard {
   receiveAttack(attackCoordinates) {
     if (this.missedAttackArray.indexOf(attackCoordinates) != -1) {
       return console.log("already guessed");
+    } else if (this.hitAttackArray.indexOf(attackCoordinates) != -1) {
+      return console.log("already hit");
     } else {
       for (let i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].coordinates.indexOf(attackCoordinates) != -1) {

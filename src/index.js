@@ -101,7 +101,8 @@ function randomShipPlacement(shipName, boardName) {
 
 function attackEvent(element) {
   console.log("player attack:" + element.classList[1]); // "F5"
-  aiBoard.receiveAttack(element.classList[1]);
+  // aiBoard.receiveAttack(element.classList[1]);
+  player.attack(element.classList[1], ai, aiBoard);
 }
 
 // module.exports = {

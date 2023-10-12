@@ -10,6 +10,7 @@ class AI extends Player {
   }
 
   randomAttack() {
+    console.log("AI start random attack");
     if (this.checkTurn()) {
       let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
       let arrayY = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
@@ -20,7 +21,8 @@ class AI extends Player {
         randomAttack();
       } else {
         this.aiAttackArray.push(attackXY);
-        return attackXY;
+        console.log("AI attack to make: " + attackXY);
+        // this.attack(attackXY, player, playerBoard);
       }
     }
   }

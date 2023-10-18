@@ -7,22 +7,23 @@ class AI extends Player {
     this.enemyPlayer = enemyPlayer;
     this.enemyBoard = enemyBoard;
     this.aiAttackArray = [];
+    this.guessArray = enemyBoard.getBoardArray();
+    // this.lastGuessHit = false;
   }
 
   randomAttack() {
-    console.log("AI start random attack");
     if (this.checkTurn()) {
-      let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-      let arrayY = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-      let x = arrayX[Math.floor(Math.random() * 10)];
-      let y = arrayY[Math.floor(Math.random() * 10)];
-      let attackXY = x + y;
+      let random = Math.floor(Math.random() * this.guessArray.length);
+      let attackXY = this.guessArray[random];
+      this.guessArray.splice(random, 1);
       if (this.aiAttackArray.indexOf(attackXY) != -1) {
+        console.log("AI random redo");
         randomAttack();
       } else {
         this.aiAttackArray.push(attackXY);
-        console.log("AI attack to make: " + attackXY);
-        // this.attack(attackXY, player, playerBoard);
+        console.log("AI attack: " + attackXY);
+        this.attack(attackXY, this.enemyPlayer, this.enemyBoard);
+        this.endTurn(this.enemyPlayer);
       }
     }
   }

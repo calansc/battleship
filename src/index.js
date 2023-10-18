@@ -3,6 +3,8 @@ import { Ship } from "./ship";
 import { Player } from "./player";
 import { AI } from "./ai";
 import { css } from "./style.css";
+import Hit from "./hit.svg";
+import Miss from "./miss.svg";
 
 //Player Ships
 let carrier = new Ship(5);
@@ -102,7 +104,60 @@ function randomShipPlacement(shipName, boardName) {
 function attackEvent(element) {
   console.log("player attack:" + element.classList[1]); // "F5"
   // aiBoard.receiveAttack(element.classList[1]);
-  player.attack(element.classList[1], ai, aiBoard);
+  if (element.classList.contains("hit") || element.classList.contains("miss")) {
+    return console.log("already guessed");
+  } else {
+    player.attack(element.classList[1], ai, aiBoard);
+    if (aiBoard.allSunk()) {
+      alert("You win!!!!");
+    }
+    updateDisplay("aiBoard", aiBoard);
+    ai.randomAttack();
+    if (playerBoard.allSunk()) {
+      alert("AI wins!!!!");
+    }
+    updateDisplay("playerBoard", playerBoard);
+  }
+}
+function updateDisplay(boardName, board) {
+  let boardNameCell = boardName + "Cell";
+  // console.log(boardNameCell);
+  // let shipCellHTML = document.querySelector(`.aiBoardCell.${shipCell}`);
+  let hitArray = board.getHitAttackArray();
+  let missArray = board.getMissedAttackArray();
+  // console.log(hitArray);
+  // console.log(missArray);
+  for (let i = 0; i < hitArray.length; i++) {
+    let shipCellHTML = document.querySelector(
+      `.${boardNameCell}.${hitArray[i]}`
+    );
+    if (shipCellHTML.classList.contains("hit")) {
+      continue;
+    }
+    shipCellHTML.classList.add("hit");
+    let hit = new Image();
+    hit.src = Hit;
+    hit.classList.add("image");
+    hit.classList.add("hit");
+    shipCellHTML.appendChild(hit);
+    // shipCellHTML.removeEventListener("click");
+    // console.log(shipCellHTML);
+  }
+  for (let j = 0; j < missArray.length; j++) {
+    let shipCellHTML = document.querySelector(
+      `.${boardNameCell}.${missArray[j]}`
+    );
+    if (shipCellHTML.classList.contains("miss")) {
+      continue;
+    }
+    shipCellHTML.classList.add("miss");
+    let miss = new Image();
+    miss.src = Miss;
+    miss.classList.add("image");
+    miss.classList.add("miss");
+    shipCellHTML.appendChild(miss);
+    // shipCellHTML.removeEventListener("click");
+  }
 }
 
 // module.exports = {

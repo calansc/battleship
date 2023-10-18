@@ -19,8 +19,12 @@ class Player {
       this.turn = true;
     }
     // console.log(this.turn);
-    if (typeof this.randomAttack() === "function") {
-      this.randomAttack();
+    try {
+      if (typeof this.randomAttack() === "function") {
+        this.randomAttack();
+      }
+    } catch (err) {
+      // console.log(err);
     }
   }
 

@@ -23,6 +23,12 @@ class Gameboard {
   getBoardArray() {
     return this.board;
   }
+  getMissedAttackArray() {
+    return this.missedAttackArray;
+  }
+  getHitAttackArray() {
+    return this.hitAttackArray;
+  }
   checkShipPlacement(coordinateX, coordinateY, length, alignment) {
     let coordinatesXY = coordinateX + coordinateY;
     let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -101,7 +107,9 @@ class Gameboard {
       for (let i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].coordinates.indexOf(attackCoordinates) != -1) {
           console.log("logging hit:" + attackCoordinates);
-          return console.log(this.shipArray[i].hitCount());
+          this.hitAttackArray.push(attackCoordinates);
+          this.shipArray[i].hitCount();
+          return;
         }
       }
       console.log("logging miss:" + attackCoordinates);

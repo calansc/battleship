@@ -21,16 +21,25 @@
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
     column-gap:0px;
     width: 45vw;
-    height: 45vw;
+    height: 45vw;;
+    
 }
 .playerBoardCell, .aiBoardCell {
-    height:auto;
-    width:auto;
+    height:4.5vw;
+    width:4.5vw;
     border: 1px black solid;
+    display: grid;
+    justify-content: center;
+    align-content: center;
 }
 .playerBoardCell.ship {
     background-color: blue;
 }
 .aiBoardCell.ship{
     background-color: rgb(168, 168, 245);
+}
+.hit {
+    
+}
+.image { 
 }

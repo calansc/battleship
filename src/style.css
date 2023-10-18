@@ -36,7 +36,7 @@
     background-color: blue;
 }
 .aiBoardCell.ship{
-    background-color: rgb(168, 168, 245);
+    /* background-color: rgb(168, 168, 245); */
 }
 .hit {
     

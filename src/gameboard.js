@@ -109,11 +109,12 @@ class Gameboard {
           console.log("logging hit:" + attackCoordinates);
           this.hitAttackArray.push(attackCoordinates);
           this.shipArray[i].hitCount();
-          return;
+          return "hit";
         }
       }
       console.log("logging miss:" + attackCoordinates);
-      return this.missedAttackArray.push(attackCoordinates);
+      this.missedAttackArray.push(attackCoordinates);
+      return "miss";
     }
   }
   allSunk() {

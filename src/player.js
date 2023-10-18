@@ -30,7 +30,11 @@ class Player {
 
   attack(coordinatesXY, enemyPlayer, enemyBoard) {
     if (this.checkTurn()) {
-      enemyBoard.receiveAttack(coordinatesXY);
+      if (enemyBoard.receiveAttack(coordinatesXY) == "hit") {
+        this.lastGuessHit = true;
+      } else {
+        this.lastGuessHit = false;
+      }
       this.endTurn(enemyPlayer);
     }
   }

@@ -8,38 +8,20 @@ class AI extends Player {
     this.enemyBoard = enemyBoard;
     this.aiAttackArray = [];
     this.guessArray = enemyBoard.getBoardArray();
-    this.lastGuessIndex = "undefined";
+    this.nextAttackArray = [];
     this.lastGuessHit = false;
   }
 
   randomAttack() {
     if (this.lastGuessHit && this.checkTurn()) {
-      let lastGuess = this.aiAttackArray[this.aiAttackArray.length - 1];
-      // console.log(lastGuess);
-      console.log("Last guess index:" + this.lastGuessIndex);
-      let guessAdjustment = [-9, -1, 0, 9];
-      let nextGuessIndex =
-        this.lastGuessIndex + guessAdjustment[Math.floor(Math.random() * 4)];
-      console.log("Next guess index:" + nextGuessIndex);
-      let nextGuess = this.guessArray[nextGuessIndex];
-      console.log("Next guess:" + nextGuess);
-      if (this.aiAttackArray.indexOf(nextGuess) != -1) {
-        console.log("AI random redo");
-        this.randomAttack();
-      } else {
-        this.aiAttackArray.push(nextGuess);
-        this.guessArray.splice(nextGuess, 1);
-        console.log("AI educated Attack:" + nextGuess);
-        this.attack(nextGuess, this.enemyPlayer, this.enemyBoard);
-        this.endTurn(this.enemyPlayer);
-      }
+      this.educatedAttackArray();
+    } else if (this.nextAttackArray.length > 0 && this.checkTurn()) {
+      this.educatedAttack();
     } else {
-      // console.log(this.lastGuessHit);
       if (this.checkTurn()) {
         let random = Math.floor(Math.random() * this.guessArray.length);
         let attackXY = this.guessArray[random];
-        this.lastGuessIndex = random;
-        console.log(this.lastGuessIndex);
+        this.lastGuess = attackXY;
         this.guessArray.splice(random, 1);
         if (this.aiAttackArray.indexOf(attackXY) != -1) {
           console.log("AI random redo");
@@ -51,6 +33,47 @@ class AI extends Player {
           this.endTurn(this.enemyPlayer);
         }
       }
+    }
+  }
+  educatedAttackArray() {
+    this.nextAttackArray = [];
+    let lastAttack = this.aiAttackArray[this.aiAttackArray.length - 1];
+    let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    let arrayY = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    let lastX = arrayX.indexOf(lastAttack[0]);
+    let lastY = arrayY.indexOf(lastAttack[1]);
+    if (arrayX[lastX - 1]) {
+      this.nextAttackArray.push(arrayX[lastX - 1] + arrayY[lastY]);
+    }
+    if (arrayX[lastX + 1]) {
+      this.nextAttackArray.push(arrayX[lastX + 1] + arrayY[lastY]);
+    }
+    if (arrayY[lastY - 1]) {
+      this.nextAttackArray.push(arrayX[lastX] + arrayY[lastY - 1]);
+    }
+    if (arrayY[lastY + 1]) {
+      this.nextAttackArray.push(arrayX[lastX] + arrayY[lastY + 1]);
+    }
+    console.log(this.nextAttackArray);
+    this.educatedAttack();
+  }
+  educatedAttack() {
+    let nextGuess = this.nextAttackArray[0];
+    if (this.aiAttackArray.indexOf(nextGuess) != -1) {
+      this.nextAttackArray.splice(0, 1);
+      console.log("AI random redo");
+      if (this.nextAttackArray.length > 0) {
+        this.educatedAttack();
+      } else {
+        this.randomAttack();
+      }
+    } else {
+      this.aiAttackArray.push(nextGuess);
+      this.guessArray.splice(this.guessArray.indexOf(nextGuess), 1);
+      this.nextAttackArray.splice(0, 1);
+      console.log("AI educated Attack:" + nextGuess);
+      this.attack(nextGuess, this.enemyPlayer, this.enemyBoard);
+      this.endTurn(this.enemyPlayer);
     }
   }
 }

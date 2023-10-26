@@ -109,12 +109,14 @@ function attackEvent(element) {
   } else {
     player.attack(element.classList[1], ai, aiBoard);
     if (aiBoard.allSunk()) {
-      alert("You win!!!!");
+      winner(1);
+      // alert("You win!!!!");
     }
     updateDisplay("aiBoard", aiBoard);
     ai.randomAttack();
     if (playerBoard.allSunk()) {
-      alert("AI wins!!!!");
+      winner(2);
+      // alert("AI wins!!!!");
     }
     updateDisplay("playerBoard", playerBoard);
   }
@@ -161,6 +163,19 @@ function updateDisplay(boardName, board) {
   let lastMove = document.querySelector(`.${boardName}`).parentElement
     .childNodes[5];
   lastMove.textContent = board.lastMove;
+}
+function winner(num) {
+  document.querySelector(".winPopup").style.display = "grid";
+  let winner = document.querySelector(".winner");
+  if (num == 1) {
+    winner.textContent = "You win!!";
+  } else if (num == 2) {
+    winner.textContent = "AI wins!!";
+  }
+  let playAgain = document.querySelector(".playAgain");
+  playAgain.addEventListener("click", () => {
+    location.reload();
+  });
 }
 
 // module.exports = {

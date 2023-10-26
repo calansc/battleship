@@ -57,3 +57,21 @@
     text-align: center;
     margin-top:4px;
 }
+.winPopup {
+    display:none;
+    position: absolute;
+    margin-left:25vw;
+    margin-top:5vh;
+    border:2px black solid;
+    border-radius: 8px;
+    height: 20vw;
+    width: 40vw;
+    background-color: white;
+    font-size: 2rem;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+.playAgain {
+    font-size:1.5rem;
+}

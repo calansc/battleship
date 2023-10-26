@@ -13,16 +13,69 @@
     margin-top: 8px;
     margin-bottom: 8px;
 }
-.boards {
+@media (max-width:720px) {
+    .boards {
+        display: grid;
+        grid-auto-flow: row;
+    
+    }
+    .playerBoard, .aiBoard{
+        margin: 0 auto;
+        display:grid;
+        grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+        column-gap:0px;
+        width: 70vw;
+        height: 70vw;;
+        
+    }
+    .playerBoardCell, .aiBoardCell {
+        height:calc(7vw - 2px);
+        width:calc(7vw - 2px);
+        border: 1px black solid;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        overflow:hidden;
+    }
+}
+@media (min-width:720px) {
+    .boards {
+        display: grid;
+        grid-auto-flow: column;
+    
+    }
+    .playerBoard, .aiBoard{
+        margin: 0 auto;
+        display:grid;
+        grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+        column-gap:0px;
+        width: 45vw;
+        height: 45vw;;
+        
+    }
+    .playerBoardCell, .aiBoardCell {
+        height:calc(4.5vw - 2px);
+        width:calc(4.5vw - 2px);
+        border: 1px black solid;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        overflow:hidden;
+    }
+}
+/* .boards {
     display: grid;
     grid-auto-flow: column;
-}
+
+} */
 .playerSide, .aiSide { }
 .boardTitle {
     text-align: center;
     margin-bottom: 4px;
 }
-.playerBoard, .aiBoard{
+/* .playerBoard, .aiBoard{
     margin: 0 auto;
     display:grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
@@ -40,7 +93,7 @@
     justify-content: center;
     align-content: center;
     overflow:hidden;
-}
+} */
 .playerBoardCell.ship {
     background-color: blue;
 }

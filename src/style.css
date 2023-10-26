@@ -6,13 +6,21 @@
     margin:0px;
     padding:0px;
 }
-
+.header{
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
 .boards {
     display: grid;
     grid-auto-flow: column;
 }
-.playerSide, .aiSide {
+.playerSide, .aiSide { }
+.boardTitle {
     text-align: center;
+    margin-bottom: 4px;
 }
 .playerBoard, .aiBoard{
     margin: 0 auto;
@@ -25,21 +33,27 @@
     
 }
 .playerBoardCell, .aiBoardCell {
-    height:4.5vw;
-    width:4.5vw;
+    height:calc(4.5vw - 2px);
+    width:calc(4.5vw - 2px);
     border: 1px black solid;
     display: grid;
     justify-content: center;
     align-content: center;
+    overflow:hidden;
 }
 .playerBoardCell.ship {
     background-color: blue;
 }
 .aiBoardCell.ship{
-    /* background-color: rgb(168, 168, 245); */
+    background-color: rgb(168, 168, 245);
 }
 .hit {
     
 }
 .image { 
+
+}
+.lastMove {
+    text-align: center;
+    margin-top:4px;
 }

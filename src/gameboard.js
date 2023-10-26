@@ -7,6 +7,7 @@ class Gameboard {
     this.missedAttackArray = [];
     this.hitAttackArray = [];
     this.shipArray = [];
+    this.lastMove = "";
   }
   buildBoard() {
     let arrayX = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -107,12 +108,14 @@ class Gameboard {
       for (let i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].coordinates.indexOf(attackCoordinates) != -1) {
           console.log("logging hit:" + attackCoordinates);
+          this.lastMove = "Hit at: " + attackCoordinates;
           this.hitAttackArray.push(attackCoordinates);
           this.shipArray[i].hitCount();
           return "hit";
         }
       }
       console.log("logging miss:" + attackCoordinates);
+      this.lastMove = "Miss at: " + attackCoordinates;
       this.missedAttackArray.push(attackCoordinates);
       return "miss";
     }

@@ -158,6 +158,9 @@ function updateDisplay(boardName, board) {
     shipCellHTML.appendChild(miss);
     // shipCellHTML.removeEventListener("click");
   }
+  let lastMove = document.querySelector(`.${boardName}`).parentElement
+    .childNodes[5];
+  lastMove.textContent = board.lastMove;
 }
 
 // module.exports = {

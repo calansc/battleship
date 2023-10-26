@@ -74,6 +74,8 @@
 .boardTitle {
     text-align: center;
     margin-bottom: 4px;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 /* .playerBoard, .aiBoard{
     margin: 0 auto;
@@ -98,7 +100,7 @@
     background-color: blue;
 }
 .aiBoardCell.ship{
-    background-color: rgb(168, 168, 245);
+    /* background-color: rgb(168, 168, 245); */
 }
 .hit {
     
@@ -111,7 +113,7 @@
     margin-top:4px;
 }
 .winPopup {
-    display:grid;
+    display:none;
     position: absolute;
     margin-left:calc(20vw - 2px);
     margin-top:5vh;
